@@ -1,0 +1,3675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Orang Terkasih</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff6b8b;
+            --primary-light: #ffc2d1;
+            --secondary: #6b5bff;
+            --light: #f9f7fe;
+            --dark: #333333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --info: #2196f3;
+            --photo: #e91e63;
+            --attachment: #9c27b0;
+            --crush: #ff4081;
+            --friend: #2196f3;
+            --family: #4caf50;
+            --other: #9c27b0;
+            --date-color: #ff9800;
+            --dashboard: #00bcd4;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Panel Kiri */
+        .left-panel {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .toggle-btn.collapsed {
+            transform: rotate(180deg);
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff4d7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--secondary);
+            border: 2px solid var(--primary-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-info {
+            background-color: var(--info);
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #0d8bf2;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #3d8b40;
+            transform: translateY(-2px);
+        }
+
+        .btn-photo {
+            background-color: var(--photo);
+            color: white;
+        }
+
+        .btn-photo:hover {
+            background-color: #d81b60;
+            transform: translateY(-2px);
+        }
+
+        .btn-attachment {
+            background-color: var(--attachment);
+            color: white;
+        }
+
+        .btn-attachment:hover {
+            background-color: #7b1fa2;
+            transform: translateY(-2px);
+        }
+
+        .btn-dashboard {
+            background-color: var(--dashboard);
+            color: white;
+        }
+
+        .btn-dashboard:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .category-filter {
+            margin-top: 25px;
+        }
+
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .category-tag {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .category-tag.active {
+            border-color: white;
+        }
+
+        .category-crush {
+            background-color: var(--crush);
+            color: white;
+        }
+
+        .category-friend {
+            background-color: var(--friend);
+            color: white;
+        }
+
+        .category-family {
+            background-color: var(--family);
+            color: white;
+        }
+
+        .category-other {
+            background-color: var(--other);
+            color: white;
+        }
+
+        /* Panel Kanan */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .dashboard-section, .people-section, .dates-section, .media-section {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .collapsible-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .dashboard-subvalue {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .spending-chart {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .chart-container {
+            height: 200px;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            gap: 10px;
+        }
+
+        .chart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .chart-bar-item {
+            width: 40px;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 8px 8px 0 0;
+            transition: height 0.5s ease;
+        }
+
+        .chart-label {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .chart-value {
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 5px;
+        }
+
+        /* People Grid */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .person-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-light), #e1e5fe);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .person-profile-pic {
+            width:50px;
+            height: 50px;
+            border-radius: 100%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: var(--shadow);
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .person-info {
+            flex: 1;
+        }
+
+        .person-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .person-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .person-media-count {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .media-count-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+
+        .person-details {
+            padding: 20px;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-value {
+            color: var(--dark);
+            padding-left: 25px;
+        }
+
+        .person-actions {
+            padding: 15px 20px 20px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn-edit {
+            background-color: var(--warning);
+            color: white;
+        }
+
+        .action-btn-delete {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .action-btn-date {
+            background-color: var(--date-color);
+            color: white;
+        }
+
+        .action-btn-media {
+            background-color: var(--photo);
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Section Kencan */
+        .dates-container {
+            margin-top: 20px;
+        }
+
+        .date-card {
+            background-color: #fff9f2;
+            border-left: 4px solid var(--date-color);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .date-card.collapsed {
+            padding-bottom: 18px;
+        }
+
+        .date-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .date-person {
+            font-weight: 700;
+            color: var(--date-color);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .date-person-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .date-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .date-btn {
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .date-btn-edit {
+            color: var(--info);
+        }
+
+        .date-btn-delete {
+            color: var(--danger);
+        }
+
+        .date-btn-toggle {
+            color: var(--date-color);
+            margin-left: 10px;
+        }
+
+        .date-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .date-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .date-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .date-detail-item {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .date-detail-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .date-rating {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .rating-high {
+            background-color: #e8f5e9;
+            color: var(--success);
+        }
+
+        .rating-medium {
+            background-color: #fff3e0;
+            color: var(--warning);
+        }
+
+        .rating-low {
+            background-color: #ffebee;
+            color: var(--danger);
+        }
+
+        /* Date Photos Section */
+        .date-photos-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .date-photos-title {
+            font-weight: 600;
+            color: var(--date-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .date-photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .date-photo-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        .date-photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .date-photo-item:hover .date-photo-img {
+            transform: scale(1.05);
+        }
+
+        .date-photo-count {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .show-more-photos {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .show-more-btn {
+            background: none;
+            border: none;
+            color: var(--info);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin: 0 auto;
+        }
+
+        /* Section Media */
+        .media-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .media-tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .media-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .media-tab:hover {
+            color: var(--primary);
+        }
+
+        .media-content {
+            min-height: 200px;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            aspect-ratio: 1;
+            background-color: #f5f5f5;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .photo-img {
+            transform: scale(1.05);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .photo-date {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .photo-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-actions {
+            opacity: 1;
+        }
+
+        .photo-action-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .attachments-list {
+            margin-top: 15px;
+        }
+
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--attachment);
+        }
+
+        .attachment-icon {
+            font-size: 2rem;
+            color: var(--attachment);
+        }
+
+        .attachment-details {
+            flex: 1;
+        }
+
+        .attachment-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .attachment-meta {
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            gap: 15px;
+        }
+
+        .attachment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .attachment-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .attachment-btn-download {
+            color: var(--info);
+        }
+
+        .attachment-btn-delete {
+            color: var(--danger);
+        }
+
+        .empty-media {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+        }
+
+        .empty-media i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        /* Import/Export Compact */
+        .import-export-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .import-export-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .import-export-btn {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .import-export-btn.import {
+            background-color: var(--info);
+            color: white;
+        }
+
+        .import-export-btn.export {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .import-export-btn.backup {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .import-export-btn.clear {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .import-export-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .file-input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px 20px;
+            background-color: #f8f9fa;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary);
+            background-color: #f0f0f0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .category-options, .rating-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-option, .rating-option {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-option.selected, .rating-option.selected {
+            border-color: white;
+            color: white;
+        }
+
+        .rating-option {
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .rating-high-option {
+            background-color: #e8f5e9;
+            color: var(--success);
+        }
+
+        .rating-medium-option {
+            background-color: #fff3e0;
+            color: var(--warning);
+        }
+
+        .rating-low-option {
+            background-color: #ffebee;
+            color: var(--danger);
+        }
+
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary);
+            background-color: #f0f0f0;
+        }
+
+        .file-upload-area.dragover {
+            border-color: var(--primary);
+            background-color: #e8f0fe;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .file-preview {
+            margin-top: 20px;
+        }
+
+        .file-preview img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .profile-pic-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid var(--primary);
+        }
+
+        .multi-file-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .multi-file-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background-color: #f5f5f5;
+        }
+
+        .multi-file-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .multi-file-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .attachment-preview {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .attachment-preview i {
+            margin-right: 8px;
+            color: var(--attachment);
+        }
+
+        .modal-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .btn-cancel {
+            background-color: #f0f0f0;
+            color: var(--dark);
+        }
+
+        .btn-save {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        /* Modal Preview Foto */
+        .photo-modal {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .photo-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .photo-modal-body {
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-modal-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .photo-modal-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 25px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> Catatan Orang Terkasih</h1>
+            <p class="subtitle">Simpan detail, kesukaan, foto, dan kenangan dengan orang-orang spesial</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Panel Kiri -->
+            <div class="left-panel">
+                <h2 class="section-title"><i class="fas fa-plus-circle"></i> Tambah Catatan Baru</h2>
+                <div class="collapsible-content">
+                    <button id="addPersonBtn" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Tambah Orang Baru
+                    </button>
+                    
+                    <button id="addDateBtn" class="btn btn-info">
+                        <i class="fas fa-calendar-plus"></i> Tambah Catatan Kencan
+                    </button>
+                    
+                    <button id="addPhotoBtn" class="btn btn-photo">
+                        <i class="fas fa-camera"></i> Tambah Foto
+                    </button>
+                    
+                    <button id="addAttachmentBtn" class="btn btn-attachment">
+                        <i class="fas fa-paperclip"></i> Tambah Lampiran
+                    </button>
+                </div>
+
+                <div class="category-filter">
+                    <h2 class="section-title"><i class="fas fa-filter"></i> Filter Kategori</h2>
+                    <div class="collapsible-content">
+                        <div class="category-tags">
+                            <div class="category-tag category-crush active" data-category="all">Semua</div>
+                            <div class="category-tag category-crush" data-category="crush">Crush</div>
+                            <div class="category-tag category-friend" data-category="friend">Teman</div>
+                            <div class="category-tag category-family" data-category="family">Keluarga</div>
+                            <div class="category-tag category-other" data-category="other">Lainnya</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="import-export-section">
+                    <h2 class="section-title"><i class="fas fa-exchange-alt"></i> Import/Export Data</h2>
+                    <div class="collapsible-content">
+                        <div class="file-input-container">
+                            <input type="file" id="importFile" class="file-input" accept=".json">
+                            <label for="importFile" class="file-input-label">
+                                <i class="fas fa-file-import"></i> Import Data dari File JSON
+                            </label>
+                        </div>
+                        
+                        <div class="import-export-buttons">
+                            <button id="exportDataBtn" class="import-export-btn export">
+                                <i class="fas fa-file-export"></i> Export
+                            </button>
+                            
+                            <button id="downloadBackupBtn" class="import-export-btn backup">
+                                <i class="fas fa-download"></i> Backup
+                            </button>
+                            
+                            <button id="clearMediaBtn" class="import-export-btn clear">
+                                <i class="fas fa-trash-alt"></i> Hapus Media
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Kanan -->
+            <div class="right-panel">
+                <!-- Dashboard Section -->
+                <div class="dashboard-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                        <button class="toggle-btn" id="toggleDashboard">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </h2>
+                    
+                    <div class="collapsible-content" id="dashboardContent">
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3>Total Orang</h3>
+                                <div class="dashboard-value" id="totalPeople">0</div>
+                                <div class="dashboard-subvalue">Orang tercatat</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <h3>Total Kencan</h3>
+                                <div class="dashboard-value" id="totalDates">0</div>
+                                <div class="dashboard-subvalue">Kali kencan</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <h3>Total Pengeluaran</h3>
+                                <div class="dashboard-value" id="totalSpending">Rp 0</div>
+                                <div class="dashboard-subvalue">Untuk semua kencan</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <h3>Rata-rata Biaya</h3>
+                                <div class="dashboard-value" id="avgSpending">Rp 0</div>
+                                <div class="dashboard-subvalue">Per kencan</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <h3>Total Foto</h3>
+                                <div class="dashboard-value" id="totalPhotos">0</div>
+                                <div class="dashboard-subvalue">Foto tersimpan</div>
+                            </div>
+                            
+                            <div class="dashboard-card">
+                                <h3>Total Lampiran</h3>
+                                <div class="dashboard-value" id="totalAttachments">0</div>
+                                <div class="dashboard-subvalue">File terlampir</div>
+                            </div>
+                        </div>
+                        
+                        <div class="spending-chart">
+                            <h3>Pengeluaran Kencan (6 Bulan Terakhir)</h3>
+                            <div class="chart-container">
+                                <div class="chart-bar" id="spendingChart">
+                                    <!-- Chart akan diisi oleh JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Daftar Orang -->
+                <div class="people-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-users"></i> Daftar Orang
+                        <button class="toggle-btn" id="togglePeople">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </h2>
+                    
+                    <div class="collapsible-content" id="peopleContent">
+                        <div id="peopleContainer" class="people-grid">
+                            <!-- Konten akan diisi oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Catatan Kencan -->
+                <div class="dates-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-calendar-alt"></i> Catatan Kencan
+                        <button class="toggle-btn" id="toggleDates">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </h2>
+                    
+                    <div class="collapsible-content" id="datesContent">
+                        <div id="datesContainer" class="dates-container">
+                            <!-- Konten akan diisi oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Media -->
+                <div class="media-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-images"></i> Galeri Foto & Lampiran
+                        <button class="toggle-btn" id="toggleMedia">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </h2>
+                    
+                    <div class="collapsible-content" id="mediaContent">
+                        <div class="media-tabs">
+                            <button class="media-tab active" data-tab="photos">Foto</button>
+                            <button class="media-tab" data-tab="attachments">Lampiran</button>
+                        </div>
+                        
+                        <div class="media-content">
+                            <!-- Tab Foto -->
+                            <div id="photosTab" class="media-tab-content">
+                                <div id="photosContainer" class="photos-grid">
+                                    <!-- Konten akan diisi oleh JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Tab Lampiran -->
+                            <div id="attachmentsTab" class="media-tab-content" style="display: none;">
+                                <div id="attachmentsContainer" class="attachments-list">
+                                    <!-- Konten akan diisi oleh JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah/Edit Orang -->
+        <div id="personModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="personModalTitle">Tambah Orang Baru</div>
+                    <button class="close-modal" id="closePersonModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="personForm">
+                        <div class="form-group">
+                            <label for="personName">Nama Lengkap</label>
+                            <input type="text" id="personName" required placeholder="Contoh: Siti Nurhaliza">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personProfilePic">Foto Profil</label>
+                            <div class="file-upload-area" id="profilePicUploadArea">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <p>Klik untuk upload foto profil</p>
+                                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maksimal ukuran: 1MB. Format: JPG, PNG</p>
+                                <input type="file" id="personProfilePic" accept="image/*" style="display: none;">
+                            </div>
+                            <div id="profilePicPreview" class="file-preview"></div>
+                            <input type="hidden" id="personProfilePicData">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <div class="category-options">
+                                <div class="category-option category-crush" data-category="crush">Crush</div>
+                                <div class="category-option category-friend" data-category="friend">Teman</div>
+                                <div class="category-option category-family" data-category="family">Keluarga</div>
+                                <div class="category-option category-other" data-category="other">Lainnya</div>
+                            </div>
+                            <input type="hidden" id="personCategory" value="crush" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personBirthday">Tanggal Lahir</label>
+                            <input type="date" id="personBirthday">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personLikes">Kesukaan (pisahkan dengan koma)</label>
+                            <input type="text" id="personLikes" placeholder="Contoh: Makanan pedas, Film horor, Musik jazz">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personDislikes">Ketidaksukaan (pisahkan dengan koma)</label>
+                            <input type="text" id="personDislikes" placeholder="Contoh: Cuaca hujan, Keramaian, Makanan manis">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personNotes">Catatan Tambahan</label>
+                            <textarea id="personNotes" placeholder="Tulis detail lainnya tentang orang ini..."></textarea>
+                        </div>
+
+                        <input type="hidden" id="personId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel" id="cancelPersonBtn">Batal</button>
+                    <button type="button" class="btn btn-primary btn-save" id="savePersonBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah/Edit Kencan -->
+        <div id="dateModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="dateModalTitle">Tambah Catatan Kencan</div>
+                    <button class="close-modal" id="closeDateModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="dateForm">
+                        <div class="form-group">
+                            <label for="datePersonId">Orang</label>
+                            <select id="datePersonId" required>
+                                <option value="">Pilih orang</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateDate">Tanggal Kencan</label>
+                            <input type="date" id="dateDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateLocation">Lokasi/Tempat</label>
+                            <input type="text" id="dateLocation" required placeholder="Contoh: Restoran Sederhana, Bioskop, Taman">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateActivity">Aktivitas</label>
+                            <input type="text" id="dateActivity" required placeholder="Contoh: Makan malam, Nonton film, Jalan-jalan">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateDuration">Durasi (jam)</label>
+                            <input type="number" id="dateDuration" min="0.5" max="24" step="0.5" placeholder="Contoh: 2.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateCost">Biaya (Rp)</label>
+                            <input type="number" id="dateCost" min="0" placeholder="Contoh: 150000">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rating Kencan</label>
+                            <div class="rating-options">
+                                <div class="rating-option rating-high-option" data-rating="high">Tinggi</div>
+                                <div class="rating-option rating-medium-option" data-rating="medium">Sedang</div>
+                                <div class="rating-option rating-low-option" data-rating="low">Rendah</div>
+                            </div>
+                            <input type="hidden" id="dateRating" value="medium" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateNotes">Catatan/Kesan</label>
+                            <textarea id="dateNotes" placeholder="Tulis kesan atau hal-hal spesial dari kencan ini..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Foto Kencan (Bisa upload beberapa foto sekaligus)</label>
+                            <div class="file-upload-area" id="datePhotosUploadArea">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                <p>Klik atau drag & drop foto di sini</p>
+                                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maksimal 10 foto, 2MB per foto. Format: JPG, PNG</p>
+                                <input type="file" id="datePhotos" accept="image/*" multiple style="display: none;">
+                            </div>
+                            <div id="datePhotosPreview" class="multi-file-preview"></div>
+                            <input type="hidden" id="datePhotosData">
+                        </div>
+
+                        <input type="hidden" id="dateId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel" id="cancelDateBtn">Batal</button>
+                    <button type="button" class="btn btn-primary btn-save" id="saveDateBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah Foto -->
+        <div id="photoModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="photoModalTitle">Tambah Foto</div>
+                    <button class="close-modal" id="closePhotoModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="photoForm">
+                        <div class="form-group">
+                            <label for="photoPersonId">Orang</label>
+                            <select id="photoPersonId" required>
+                                <option value="">Pilih orang</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photoTitle">Judul Foto</label>
+                            <input type="text" id="photoTitle" placeholder="Contoh: Foto Kencan Pertama, Hadiah Ulang Tahun" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photoDate">Tanggal Foto</label>
+                            <input type="date" id="photoDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photoDescription">Deskripsi (opsional)</label>
+                            <textarea id="photoDescription" placeholder="Deskripsi tentang foto ini..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Unggah Foto</label>
+                            <div class="file-upload-area" id="photoUploadArea">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Klik atau drag & drop foto di sini</p>
+                                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maksimal ukuran: 2MB. Format: JPG, PNG, GIF</p>
+                                <input type="file" id="photoFile" accept="image/*" style="display: none;">
+                            </div>
+                            <div id="photoPreview" class="file-preview"></div>
+                        </div>
+
+                        <input type="hidden" id="photoId">
+                        <input type="hidden" id="photoData">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel" id="cancelPhotoBtn">Batal</button>
+                    <button type="button" class="btn btn-primary btn-save" id="savePhotoBtn">Simpan Foto</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah Lampiran -->
+        <div id="attachmentModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="attachmentModalTitle">Tambah Lampiran</div>
+                    <button class="close-modal" id="closeAttachmentModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="attachmentForm">
+                        <div class="form-group">
+                            <label for="attachmentPersonId">Orang</label>
+                            <select id="attachmentPersonId" required>
+                                <option value="">Pilih orang</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attachmentName">Nama Lampiran</label>
+                            <input type="text" id="attachmentName" placeholder="Contoh: Screenshot Chat, Voice Note, Kartu Ucapan" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attachmentType">Jenis Lampiran</label>
+                            <select id="attachmentType" required>
+                                <option value="">Pilih jenis</option>
+                                <option value="screenshot">Screenshot Chat</option>
+                                <option value="voice">Voice Note</option>
+                                <option value="card">Kartu Ucapan</option>
+                                <option value="document">Dokumen</option>
+                                <option value="other">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attachmentDate">Tanggal</label>
+                            <input type="date" id="attachmentDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attachmentDescription">Deskripsi (opsional)</label>
+                            <textarea id="attachmentDescription" placeholder="Deskripsi tentang lampiran ini..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Unggah File</label>
+                            <div class="file-upload-area" id="attachmentUploadArea">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Klik atau drag & drop file di sini</p>
+                                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maksimal ukuran: 5MB. Format: PDF, MP3, TXT, JPG, PNG</p>
+                                <input type="file" id="attachmentFile" style="display: none;">
+                            </div>
+                            <div id="attachmentPreview" class="attachment-preview"></div>
+                        </div>
+
+                        <input type="hidden" id="attachmentId">
+                        <input type="hidden" id="attachmentData">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel" id="cancelAttachmentBtn">Batal</button>
+                    <button type="button" class="btn btn-primary btn-save" id="saveAttachmentBtn">Simpan Lampiran</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Preview Foto -->
+        <div id="photoPreviewModal" class="modal photo-modal">
+            <div class="modal-content photo-modal-content">
+                <div class="modal-body photo-modal-body">
+                    <img id="previewPhotoImg" class="photo-modal-img" src="" alt="">
+                    <div class="photo-modal-info" id="previewPhotoInfo"></div>
+                </div>
+                <button class="close-modal" id="closePhotoPreviewModal" style="position: absolute; top: 15px; right: 15px;">&times;</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Catatan Orang Terkasih &copy; 2023 - Data tersimpan di localStorage browser Anda</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data contoh untuk aplikasi
+        const sampleData = {
+            people: [
+                {
+                    id: 1,
+                    name: "Rina Andini",
+                    category: "crush",
+                    birthday: "2000-05-15",
+                    likes: "Membaca, Kopi, Hiking, Musik indie",
+                    dislikes: "Keramaian, Makanan pedas",
+                    notes: "Suka menulis puisi dan fotografi alam. Memiliki blog pribadi tentang perjalanan.",
+                    profilePic: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmNmI4YiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PHBhdGggZD0iTTcwIDEzMGg2MHEyMCAwIDIwIDIwdjEwaC0xMDB2LTEwcTAgMjAgMjAgMjB6IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+"
+                },
+                {
+                    id: 2,
+                    name: "Budi Santoso",
+                    category: "friend",
+                    birthday: "1998-11-22",
+                    likes: "Sepak bola, Film action, Masakan Padang",
+                    dislikes: "Ketinggian, Telat",
+                    notes: "Teman sejak SMA, selalu support dan bisa diandalkan. Pekerjaan: Software Developer",
+                    profilePic: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzIxOTZGMiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PHBhdGggZD0iTTcwIDEzMGg2MHEyMCAwIDIwIDIwdjEwaC0xMDB2LTEwcTAgMjAgMjAgMjB6IiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTgwIDExMGg0MHEyMCAwIDIwIDIwdjEwaC04MHYtMTBxMCAyMCAyMCAyMHoiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4="
+                }
+            ],
+            dates: [
+                {
+                    id: 1,
+                    personId: 1,
+                    date: "2023-10-15",
+                    location: "Restoran Sederhana",
+                    activity: "Makan malam",
+                    duration: 2.5,
+                    cost: 200000,
+                    rating: "high",
+                    notes: "Percakapan yang menarik tentang buku favorit. Dia sangat antusias menceritakan perjalanannya ke Bali.",
+                    photos: [
+                        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmNmI4YiIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+Rm90byBLZW5jYW48L3RleHQ+PC9zdmc+",
+                        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmOTgwMCIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+TWFrYW4gTWFsYW08L3RleHQ+PC9zdmc+"
+                    ]
+                },
+                {
+                    id: 2,
+                    personId: 1,
+                    date: "2023-09-20",
+                    location: "Bioskop XXI",
+                    activity: "Nonton film",
+                    duration: 3,
+                    cost: 150000,
+                    rating: "medium",
+                    notes: "Menonton film horor, seru sekali!",
+                    photos: [
+                        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzljMjdCMCIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+RmlsbSBIb3JvcjwvdGV4dD48L3N2Zz4="
+                    ]
+                },
+                {
+                    id: 3,
+                    personId: 2,
+                    date: "2023-11-05",
+                    location: "Kafe Tengah Kota",
+                    activity: "Ngopi dan ngobrol",
+                    duration: 2,
+                    cost: 80000,
+                    rating: "high",
+                    notes: "Membicarakan rencana bisnis kedai kopi.",
+                    photos: []
+                }
+            ],
+            photos: [
+                {
+                    id: 1,
+                    personId: 1,
+                    title: "Foto Kencan Pertama",
+                    date: "2023-10-15",
+                    description: "Foto bersama di restoran",
+                    data: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmNmI4YiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNzAiIHI9IjEwIiBmaWxsPSIjMzMzMzMzIi8+PHBhdGggZD0iTTcwIDEzMGg2MHEyMCAwIDIwIDIwdjEwaC0xMDB2LTEwcTAgMjAgMjAgMjB6IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+"
+                }
+            ],
+            attachments: [
+                {
+                    id: 1,
+                    personId: 1,
+                    name: "Screenshot Chat Pertama",
+                    type: "screenshot",
+                    date: "2023-10-10",
+                    description: "Percakapan pertama via WhatsApp",
+                    data: "data:text/plain;base64,RXhhbXBsZSBjaGF0IHNjcmVlbnNob3Q6IApSZTogSGFsbywgYXBhIGthYmFyPwpSZTogSXlhLCBzZWRhbmcgbWFrYW4gbWFsYW0gYmVyc2FtYT8KUmU6IEF5byBtYWthbiBiZXJzYW1hIQ==",
+                    fileName: "chat_screenshot.txt"
+                }
+            ]
+        };
+
+        // State aplikasi
+        let people = [];
+        let dates = [];
+        let photos = [];
+        let attachments = [];
+        let editingPersonId = null;
+        let editingDateId = null;
+        editingPhotoId = null;
+        editingAttachmentId = null;
+        let currentFilter = 'all';
+        let currentMediaTab = 'photos';
+        let datePhotosData = []; // Untuk menyimpan foto kencan yang diupload
+        
+        // State untuk collapse/expand
+        let dashboardCollapsed = false;
+        let peopleCollapsed = false;
+        let datesCollapsed = false;
+        let mediaCollapsed = false;
+        let collapsedDates = new Set(); // Untuk menyimpan ID kencan yang dicollapse
+
+        // DOM Elements
+        const peopleContainer = document.getElementById('peopleContainer');
+        const datesContainer = document.getElementById('datesContainer');
+        const photosContainer = document.getElementById('photosContainer');
+        const attachmentsContainer = document.getElementById('attachmentsContainer');
+        
+        // Modal elements
+        const personModal = document.getElementById('personModal');
+        const dateModal = document.getElementById('dateModal');
+        const photoModal = document.getElementById('photoModal');
+        const attachmentModal = document.getElementById('attachmentModal');
+        const photoPreviewModal = document.getElementById('photoPreviewModal');
+        
+        // Close buttons
+        const closePersonModalBtn = document.getElementById('closePersonModal');
+        const closeDateModalBtn = document.getElementById('closeDateModal');
+        const closePhotoModalBtn = document.getElementById('closePhotoModal');
+        const closeAttachmentModalBtn = document.getElementById('closeAttachmentModal');
+        const closePhotoPreviewModalBtn = document.getElementById('closePhotoPreviewModal');
+        
+        // Cancel buttons
+        const cancelPersonBtn = document.getElementById('cancelPersonBtn');
+        const cancelDateBtn = document.getElementById('cancelDateBtn');
+        const cancelPhotoBtn = document.getElementById('cancelPhotoBtn');
+        const cancelAttachmentBtn = document.getElementById('cancelAttachmentBtn');
+        
+        // Add buttons
+        const addPersonBtn = document.getElementById('addPersonBtn');
+        const addDateBtn = document.getElementById('addDateBtn');
+        const addPhotoBtn = document.getElementById('addPhotoBtn');
+        const addAttachmentBtn = document.getElementById('addAttachmentBtn');
+        
+        // Save buttons
+        const savePersonBtn = document.getElementById('savePersonBtn');
+        const saveDateBtn = document.getElementById('saveDateBtn');
+        const savePhotoBtn = document.getElementById('savePhotoBtn');
+        const saveAttachmentBtn = document.getElementById('saveAttachmentBtn');
+        
+        // Form elements
+        const personForm = document.getElementById('personForm');
+        const dateForm = document.getElementById('dateForm');
+        const photoForm = document.getElementById('photoForm');
+        const attachmentForm = document.getElementById('attachmentForm');
+        
+        // Modal titles
+        const personModalTitle = document.getElementById('personModalTitle');
+        const dateModalTitle = document.getElementById('dateModalTitle');
+        const photoModalTitle = document.getElementById('photoModalTitle');
+        const attachmentModalTitle = document.getElementById('attachmentModalTitle');
+        
+        // Other elements
+        const categoryOptions = document.querySelectorAll('.category-option');
+        const ratingOptions = document.querySelectorAll('.rating-option');
+        const categoryTags = document.querySelectorAll('.category-tag');
+        const mediaTabs = document.querySelectorAll('.media-tab');
+        
+        // Input elements
+        const personCategoryInput = document.getElementById('personCategory');
+        const dateRatingInput = document.getElementById('dateRating');
+        const datePersonIdSelect = document.getElementById('datePersonId');
+        const photoPersonIdSelect = document.getElementById('photoPersonId');
+        const attachmentPersonIdSelect = document.getElementById('attachmentPersonId');
+        
+        // Profile pic elements
+        const profilePicUploadArea = document.getElementById('profilePicUploadArea');
+        const profilePicInput = document.getElementById('personProfilePic');
+        const profilePicPreviewDiv = document.getElementById('profilePicPreview');
+        const personProfilePicDataInput = document.getElementById('personProfilePicData');
+        
+        // Date photos elements
+        const datePhotosUploadArea = document.getElementById('datePhotosUploadArea');
+        const datePhotosInput = document.getElementById('datePhotos');
+        const datePhotosPreviewDiv = document.getElementById('datePhotosPreview');
+        const datePhotosDataInput = document.getElementById('datePhotosData');
+        
+        // Photo file upload elements
+        const photoUploadArea = document.getElementById('photoUploadArea');
+        const photoFileInput = document.getElementById('photoFile');
+        const photoPreviewDiv = document.getElementById('photoPreview');
+        const photoDataInput = document.getElementById('photoData');
+        
+        // Attachment file upload elements
+        const attachmentUploadArea = document.getElementById('attachmentUploadArea');
+        const attachmentFileInput = document.getElementById('attachmentFile');
+        const attachmentPreviewDiv = document.getElementById('attachmentPreview');
+        const attachmentDataInput = document.getElementById('attachmentData');
+        
+        // Import/Export elements
+        const importFileInput = document.getElementById('importFile');
+        const exportDataBtn = document.getElementById('exportDataBtn');
+        const downloadBackupBtn = document.getElementById('downloadBackupBtn');
+        const clearMediaBtn = document.getElementById('clearMediaBtn');
+        
+        // Dashboard elements
+        const totalPeopleEl = document.getElementById('totalPeople');
+        const totalDatesEl = document.getElementById('totalDates');
+        const totalSpendingEl = document.getElementById('totalSpending');
+        const avgSpendingEl = document.getElementById('avgSpending');
+        const totalPhotosEl = document.getElementById('totalPhotos');
+        const totalAttachmentsEl = document.getElementById('totalAttachments');
+        const spendingChartEl = document.getElementById('spendingChart');
+        
+        // Toggle buttons
+        const toggleDashboardBtn = document.getElementById('toggleDashboard');
+        const togglePeopleBtn = document.getElementById('togglePeople');
+        const toggleDatesBtn = document.getElementById('toggleDates');
+        const toggleMediaBtn = document.getElementById('toggleMedia');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const peopleContent = document.getElementById('peopleContent');
+        const datesContent = document.getElementById('datesContent');
+        const mediaContent = document.getElementById('mediaContent');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            renderDashboard();
+            renderPeople();
+            renderDates();
+            renderPhotos();
+            renderAttachments();
+            setupEventListeners();
+            populatePersonSelects();
+        });
+
+        // Load data dari localStorage
+        function loadData() {
+            const savedData = localStorage.getItem('peopleDatesMediaData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                people = data.people || [];
+                dates = data.dates || [];
+                photos = data.photos || [];
+                attachments = data.attachments || [];
+            } else {
+                // Gunakan data contoh jika localStorage kosong
+                people = [...sampleData.people];
+                dates = [...sampleData.dates];
+                photos = [...sampleData.photos];
+                attachments = [...sampleData.attachments];
+                saveToLocalStorage();
+            }
+        }
+
+        // Simpan ke localStorage
+        function saveToLocalStorage() {
+            const data = {
+                people: people,
+                dates: dates,
+                photos: photos,
+                attachments: attachments,
+                lastUpdated: new Date().toISOString()
+            };
+            localStorage.setItem('peopleDatesMediaData', JSON.stringify(data));
+            renderDashboard();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Person modal
+            addPersonBtn.addEventListener('click', openAddPersonModal);
+            closePersonModalBtn.addEventListener('click', closePersonModal);
+            cancelPersonBtn.addEventListener('click', closePersonModal);
+            savePersonBtn.addEventListener('click', savePerson);
+            
+            // Date modal
+            addDateBtn.addEventListener('click', openAddDateModal);
+            closeDateModalBtn.addEventListener('click', closeDateModal);
+            cancelDateBtn.addEventListener('click', closeDateModal);
+            saveDateBtn.addEventListener('click', saveDate);
+            
+            // Photo modal
+            addPhotoBtn.addEventListener('click', openAddPhotoModal);
+            closePhotoModalBtn.addEventListener('click', closePhotoModal);
+            cancelPhotoBtn.addEventListener('click', closePhotoModal);
+            savePhotoBtn.addEventListener('click', savePhoto);
+            
+            // Attachment modal
+            addAttachmentBtn.addEventListener('click', openAddAttachmentModal);
+            closeAttachmentModalBtn.addEventListener('click', closeAttachmentModal);
+            cancelAttachmentBtn.addEventListener('click', closeAttachmentModal);
+            saveAttachmentBtn.addEventListener('click', saveAttachment);
+            
+            // Photo preview modal
+            closePhotoPreviewModalBtn.addEventListener('click', closePhotoPreviewModal);
+            
+            // Kategori options untuk person
+            categoryOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    categoryOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const category = this.getAttribute('data-category');
+                    personCategoryInput.value = category;
+                });
+            });
+
+            // Rating options untuk date
+            ratingOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    ratingOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const rating = this.getAttribute('data-rating');
+                    dateRatingInput.value = rating;
+                });
+            });
+
+            // Filter kategori
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    categoryTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-category');
+                    renderPeople();
+                });
+            });
+
+            // Media tabs
+            mediaTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    mediaTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentMediaTab = this.getAttribute('data-tab');
+                    document.getElementById('photosTab').style.display = currentMediaTab === 'photos' ? 'block' : 'none';
+                    document.getElementById('attachmentsTab').style.display = currentMediaTab === 'attachments' ? 'block' : 'none';
+                });
+            });
+
+            // Profile pic upload
+            profilePicUploadArea.addEventListener('click', () => profilePicInput.click());
+            profilePicInput.addEventListener('change', handleProfilePicSelect);
+            
+            // Date photos upload
+            datePhotosUploadArea.addEventListener('click', () => datePhotosInput.click());
+            datePhotosInput.addEventListener('change', handleDatePhotosSelect);
+            
+            // Photo file upload
+            photoUploadArea.addEventListener('click', () => photoFileInput.click());
+            photoFileInput.addEventListener('change', handlePhotoFileSelect);
+            
+            // Attachment file upload
+            attachmentUploadArea.addEventListener('click', () => attachmentFileInput.click());
+            attachmentFileInput.addEventListener('change', handleAttachmentFileSelect);
+            
+            // Drag and drop handlers
+            setupDragAndDrop(profilePicUploadArea, profilePicInput, handleProfilePicSelect);
+            setupDragAndDrop(datePhotosUploadArea, datePhotosInput, handleDatePhotosSelect);
+            setupDragAndDrop(photoUploadArea, photoFileInput, handlePhotoFileSelect);
+            setupDragAndDrop(attachmentUploadArea, attachmentFileInput, handleAttachmentFileSelect);
+
+            // Import/Export
+            importFileInput.addEventListener('change', handleFileImport);
+            exportDataBtn.addEventListener('click', exportData);
+            downloadBackupBtn.addEventListener('click', downloadBackup);
+            clearMediaBtn.addEventListener('click', clearAllMedia);
+
+            // Toggle buttons
+            toggleDashboardBtn.addEventListener('click', () => toggleSection('dashboard'));
+            togglePeopleBtn.addEventListener('click', () => toggleSection('people'));
+            toggleDatesBtn.addEventListener('click', () => toggleSection('dates'));
+            toggleMediaBtn.addEventListener('click', () => toggleSection('media'));
+
+            // Close modal dengan klik di luar
+            window.addEventListener('click', function(event) {
+                if (event.target === personModal) closePersonModal();
+                if (event.target === dateModal) closeDateModal();
+                if (event.target === photoModal) closePhotoModal();
+                if (event.target === attachmentModal) closeAttachmentModal();
+                if (event.target === photoPreviewModal) closePhotoPreviewModal();
+            });
+        }
+
+        // Setup drag and drop
+        function setupDragAndDrop(area, input, handler) {
+            area.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                area.classList.add('dragover');
+            });
+            
+            area.addEventListener('dragleave', () => {
+                area.classList.remove('dragover');
+            });
+            
+            area.addEventListener('drop', (e) => {
+                e.preventDefault();
+                area.classList.remove('dragover');
+                if (e.dataTransfer.files.length) {
+                    // Clear existing files
+                    input.files = e.dataTransfer.files;
+                    handler();
+                }
+            });
+        }
+
+        // Toggle section collapse/expand
+        function toggleSection(section) {
+            const contentMap = {
+                'dashboard': {content: dashboardContent, btn: toggleDashboardBtn, state: 'dashboardCollapsed'},
+                'people': {content: peopleContent, btn: togglePeopleBtn, state: 'peopleCollapsed'},
+                'dates': {content: datesContent, btn: toggleDatesBtn, state: 'datesCollapsed'},
+                'media': {content: mediaContent, btn: toggleMediaBtn, state: 'mediaCollapsed'}
+            };
+            
+            const sectionData = contentMap[section];
+            if (!sectionData) return;
+            
+            // Toggle state
+            window[sectionData.state] = !window[sectionData.state];
+            
+            // Update UI
+            if (window[sectionData.state]) {
+                sectionData.content.classList.add('collapsed');
+                sectionData.btn.classList.add('collapsed');
+                sectionData.btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+            } else {
+                sectionData.content.classList.remove('collapsed');
+                sectionData.btn.classList.remove('collapsed');
+                sectionData.btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            }
+        }
+
+        // Toggle individual date card
+        function toggleDateCard(dateId) {
+            const dateCard = document.querySelector(`.date-card[data-id="${dateId}"]`);
+            const dateContent = dateCard.querySelector('.date-content');
+            const toggleBtn = dateCard.querySelector('.date-btn-toggle');
+            
+            if (collapsedDates.has(dateId)) {
+                // Expand
+                dateContent.classList.remove('collapsed');
+                dateCard.classList.remove('collapsed');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                collapsedDates.delete(dateId);
+            } else {
+                // Collapse
+                dateContent.classList.add('collapsed');
+                dateCard.classList.add('collapsed');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                collapsedDates.add(dateId);
+            }
+        }
+
+        // Populate semua select options untuk memilih orang
+        function populatePersonSelects() {
+            // Untuk date modal
+            datePersonIdSelect.innerHTML = '<option value="">Pilih orang</option>';
+            people.forEach(person => {
+                const option = document.createElement('option');
+                option.value = person.id;
+                option.textContent = person.name;
+                datePersonIdSelect.appendChild(option);
+            });
+            
+            // Untuk photo modal
+            photoPersonIdSelect.innerHTML = '<option value="">Pilih orang</option>';
+            people.forEach(person => {
+                const option = document.createElement('option');
+                option.value = person.id;
+                option.textContent = person.name;
+                photoPersonIdSelect.appendChild(option);
+            });
+            
+            // Untuk attachment modal
+            attachmentPersonIdSelect.innerHTML = '<option value="">Pilih orang</option>';
+            people.forEach(person => {
+                const option = document.createElement('option');
+                option.value = person.id;
+                option.textContent = person.name;
+                attachmentPersonIdSelect.appendChild(option);
+            });
+        }
+
+        // Handle profile pic selection
+        function handleProfilePicSelect() {
+            const file = profilePicInput.files[0];
+            if (!file) return;
+            
+            // Check file size (max 1MB)
+            if (file.size > 1 * 1024 * 1024) {
+                alert('Ukuran file maksimal 1MB');
+                profilePicInput.value = '';
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.match('image.*')) {
+                alert('Hanya file gambar yang diizinkan');
+                profilePicInput.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                personProfilePicDataInput.value = e.target.result;
+                
+                // Show preview
+                profilePicPreviewDiv.innerHTML = `<img src="${e.target.result}" alt="Preview" class="profile-pic-preview">`;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Handle date photos selection
+        function handleDatePhotosSelect() {
+            const files = Array.from(datePhotosInput.files);
+            
+            // Check total files (max 10)
+            if (files.length > 10) {
+                alert('Maksimal 10 foto yang dapat diupload sekaligus');
+                datePhotosInput.value = '';
+                datePhotosPreviewDiv.innerHTML = '';
+                datePhotosData = [];
+                return;
+            }
+            
+            // Clear previous preview
+            datePhotosPreviewDiv.innerHTML = '';
+            datePhotosData = [];
+            
+            // Process each file
+            let processedCount = 0;
+            files.forEach((file, index) => {
+                // Check file size (max 2MB per file)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert(`File "${file.name}" melebihi ukuran maksimal 2MB`);
+                    return;
+                }
+                
+                // Check file type
+                if (!file.type.match('image.*')) {
+                    alert(`File "${file.name}" bukan gambar`);
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    datePhotosData.push(e.target.result);
+                    
+                    // Create preview item
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'multi-file-item';
+                    previewItem.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" class="multi-file-img">
+                        <button type="button" class="multi-file-remove" onclick="removeDatePhoto(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    datePhotosPreviewDiv.appendChild(previewItem);
+                    
+                    processedCount++;
+                    
+                    // Update hidden input when all files processed
+                    if (processedCount === files.length) {
+                        datePhotosDataInput.value = JSON.stringify(datePhotosData);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Remove date photo from preview
+        function removeDatePhoto(index) {
+            datePhotosData.splice(index, 1);
+            datePhotosDataInput.value = JSON.stringify(datePhotosData);
+            
+            // Re-render preview
+            datePhotosPreviewDiv.innerHTML = '';
+            datePhotosData.forEach((data, idx) => {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'multi-file-item';
+                previewItem.innerHTML = `
+                    <img src="${data}" alt="Preview" class="multi-file-img">
+                    <button type="button" class="multi-file-remove" onclick="removeDatePhoto(${idx})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                datePhotosPreviewDiv.appendChild(previewItem);
+            });
+        }
+
+        // Handle photo file selection
+        function handlePhotoFileSelect() {
+            const file = photoFileInput.files[0];
+            if (!file) return;
+            
+            // Check file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Ukuran file maksimal 2MB');
+                photoFileInput.value = '';
+                return;
+            }
+            
+            // Check file type
+            if (!file.type.match('image.*')) {
+                alert('Hanya file gambar yang diizinkan');
+                photoFileInput.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                photoDataInput.value = e.target.result;
+                
+                // Show preview
+                photoPreviewDiv.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Handle attachment file selection
+        function handleAttachmentFileSelect() {
+            const file = attachmentFileInput.files[0];
+            if (!file) return;
+            
+            // Check file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file maksimal 5MB');
+                attachmentFileInput.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                attachmentDataInput.value = e.target.result;
+                
+                // Show preview
+                const fileTypeIcon = getFileTypeIcon(file.type);
+                attachmentPreviewDiv.innerHTML = `
+                    <div>
+                        <i class="${fileTypeIcon}"></i>
+                        <strong>${file.name}</strong> (${formatFileSize(file.size)})
+                    </div>
+                    <div style="margin-top: 5px;">Tipe: ${file.type || 'Tidak diketahui'}</div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Render dashboard
+        function renderDashboard() {
+            // Calculate statistics
+            const totalPeople = people.length;
+            const totalDates = dates.length;
+            const totalSpending = dates.reduce((sum, date) => sum + (date.cost || 0), 0);
+            const avgSpending = totalDates > 0 ? Math.round(totalSpending / totalDates) : 0;
+            const totalPhotos = photos.length + dates.reduce((sum, date) => sum + (date.photos ? date.photos.length : 0), 0);
+            const totalAttachments = attachments.length;
+            
+            // Update dashboard values
+            totalPeopleEl.textContent = totalPeople;
+            totalDatesEl.textContent = totalDates;
+            totalSpendingEl.textContent = `Rp ${totalSpending.toLocaleString('id-ID')}`;
+            avgSpendingEl.textContent = `Rp ${avgSpending.toLocaleString('id-ID')}`;
+            totalPhotosEl.textContent = totalPhotos;
+            totalAttachmentsEl.textContent = totalAttachments;
+            
+            // Render spending chart (last 6 months)
+            renderSpendingChart();
+        }
+
+        // Render spending chart
+        function renderSpendingChart() {
+            // Get last 6 months
+            const months = [];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const today = new Date();
+            
+            for (let i = 5; i >= 0; i--) {
+                const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+                months.push({
+                    month: monthNames[date.getMonth()],
+                    year: date.getFullYear(),
+                    monthIndex: date.getMonth(),
+                    yearFull: date.getFullYear()
+                });
+            }
+            
+            // Calculate spending per month
+            const monthlySpending = months.map(m => {
+                const monthSpending = dates
+                    .filter(date => {
+                        const dateObj = new Date(date.date);
+                        return dateObj.getMonth() === m.monthIndex && 
+                               dateObj.getFullYear() === m.yearFull;
+                    })
+                    .reduce((sum, date) => sum + (date.cost || 0), 0);
+                
+                return {
+                    month: m.month,
+                    spending: monthSpending
+                };
+            });
+            
+            // Find max spending for scaling
+            const maxSpending = Math.max(...monthlySpending.map(m => m.spending), 1);
+            
+            // Render chart bars
+            spendingChartEl.innerHTML = monthlySpending.map(item => {
+                const height = maxSpending > 0 ? Math.max((item.spending / maxSpending) * 100, 10) : 10;
+                
+                return `
+                    <div class="chart-item">
+                        <div class="chart-bar-item" style="height: ${height}%"></div>
+                        <div class="chart-label">${item.month}</div>
+                        <div class="chart-value">Rp ${item.spending.toLocaleString('id-ID')}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Buka modal untuk menambah orang
+        function openAddPersonModal() {
+            editingPersonId = null;
+            personModalTitle.textContent = "Tambah Orang Baru";
+            personForm.reset();
+            profilePicPreviewDiv.innerHTML = '';
+            personProfilePicDataInput.value = '';
+            
+            // Reset kategori ke crush
+            categoryOptions.forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.category-option[data-category="crush"]').classList.add('selected');
+            personCategoryInput.value = "crush";
+            
+            personModal.classList.add('active');
+        }
+
+        // Buka modal untuk edit orang
+        function openEditPersonModal(id) {
+            editingPersonId = id;
+            personModalTitle.textContent = "Edit Catatan Orang";
+            
+            const person = people.find(p => p.id === id);
+            if (person) {
+                document.getElementById('personName').value = person.name;
+                document.getElementById('personBirthday').value = person.birthday || '';
+                document.getElementById('personLikes').value = person.likes || '';
+                document.getElementById('personDislikes').value = person.dislikes || '';
+                document.getElementById('personNotes').value = person.notes || '';
+                document.getElementById('personId').value = person.id;
+                
+                // Set kategori
+                categoryOptions.forEach(opt => opt.classList.remove('selected'));
+                document.querySelector(`.category-option[data-category="${person.category}"]`).classList.add('selected');
+                personCategoryInput.value = person.category;
+                
+                // Set profile pic
+                if (person.profilePic) {
+                    personProfilePicDataInput.value = person.profilePic;
+                    profilePicPreviewDiv.innerHTML = `<img src="${person.profilePic}" alt="Preview" class="profile-pic-preview">`;
+                }
+            }
+            
+            personModal.classList.add('active');
+        }
+
+        // Buka modal untuk menambah kencan
+        function openAddDateModal() {
+            if (people.length === 0) {
+                alert("Tambahkan orang terlebih dahulu sebelum mencatat kencan.");
+                return;
+            }
+            
+            editingDateId = null;
+            dateModalTitle.textContent = "Tambah Catatan Kencan";
+            dateForm.reset();
+            datePhotosPreviewDiv.innerHTML = '';
+            datePhotosData = [];
+            datePhotosDataInput.value = '';
+            
+            // Reset rating ke medium
+            ratingOptions.forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.rating-option[data-rating="medium"]').classList.add('selected');
+            dateRatingInput.value = "medium";
+            
+            // Set tanggal hari ini
+            document.getElementById('dateDate').valueAsDate = new Date();
+            
+            dateModal.classList.add('active');
+        }
+
+        // Buka modal untuk edit kencan
+        function openEditDateModal(id) {
+            editingDateId = id;
+            dateModalTitle.textContent = "Edit Catatan Kencan";
+            
+            const date = dates.find(d => d.id === id);
+            if (date) {
+                document.getElementById('datePersonId').value = date.personId;
+                document.getElementById('dateDate').value = date.date;
+                document.getElementById('dateLocation').value = date.location;
+                document.getElementById('dateActivity').value = date.activity;
+                document.getElementById('dateDuration').value = date.duration || '';
+                document.getElementById('dateCost').value = date.cost || '';
+                document.getElementById('dateNotes').value = date.notes || '';
+                document.getElementById('dateId').value = date.id;
+                
+                // Set rating
+                ratingOptions.forEach(opt => opt.classList.remove('selected'));
+                document.querySelector(`.rating-option[data-rating="${date.rating}"]`).classList.add('selected');
+                dateRatingInput.value = date.rating;
+                
+                // Set photos
+                if (date.photos && date.photos.length > 0) {
+                    datePhotosData = [...date.photos];
+                    datePhotosDataInput.value = JSON.stringify(datePhotosData);
+                    
+                    // Show preview
+                    datePhotosPreviewDiv.innerHTML = '';
+                    date.photos.forEach((photoData, idx) => {
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'multi-file-item';
+                        previewItem.innerHTML = `
+                            <img src="${photoData}" alt="Preview" class="multi-file-img">
+                            <button type="button" class="multi-file-remove" onclick="removeDatePhoto(${idx})">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        datePhotosPreviewDiv.appendChild(previewItem);
+                    });
+                }
+            }
+            
+            dateModal.classList.add('active');
+        }
+
+        // Buka modal untuk menambah foto
+        function openAddPhotoModal() {
+            if (people.length === 0) {
+                alert("Tambahkan orang terlebih dahulu sebelum menambahkan foto.");
+                return;
+            }
+            
+            editingPhotoId = null;
+            photoModalTitle.textContent = "Tambah Foto";
+            photoForm.reset();
+            photoPreviewDiv.innerHTML = '';
+            photoDataInput.value = '';
+            
+            // Set tanggal hari ini
+            document.getElementById('photoDate').valueAsDate = new Date();
+            
+            photoModal.classList.add('active');
+        }
+
+        // Buka modal untuk edit foto
+        function openEditPhotoModal(id) {
+            editingPhotoId = id;
+            photoModalTitle.textContent = "Edit Foto";
+            
+            const photo = photos.find(p => p.id === id);
+            if (photo) {
+                document.getElementById('photoPersonId').value = photo.personId;
+                document.getElementById('photoTitle').value = photo.title;
+                document.getElementById('photoDate').value = photo.date;
+                document.getElementById('photoDescription').value = photo.description || '';
+                document.getElementById('photoId').value = photo.id;
+                photoDataInput.value = photo.data;
+                
+                // Show preview
+                photoPreviewDiv.innerHTML = `<img src="${photo.data}" alt="Preview">`;
+            }
+            
+            photoModal.classList.add('active');
+        }
+
+        // Buka modal untuk menambah lampiran
+        function openAddAttachmentModal() {
+            if (people.length === 0) {
+                alert("Tambahkan orang terlebih dahulu sebelum menambahkan lampiran.");
+                return;
+            }
+            
+            editingAttachmentId = null;
+            attachmentModalTitle.textContent = "Tambah Lampiran";
+            attachmentForm.reset();
+            attachmentPreviewDiv.innerHTML = '';
+            attachmentDataInput.value = '';
+            
+            // Set tanggal hari ini
+            document.getElementById('attachmentDate').valueAsDate = new Date();
+            
+            attachmentModal.classList.add('active');
+        }
+
+        // Buka modal untuk edit lampiran
+        function openEditAttachmentModal(id) {
+            editingAttachmentId = id;
+            attachmentModalTitle.textContent = "Edit Lampiran";
+            
+            const attachment = attachments.find(a => a.id === id);
+            if (attachment) {
+                document.getElementById('attachmentPersonId').value = attachment.personId;
+                document.getElementById('attachmentName').value = attachment.name;
+                document.getElementById('attachmentType').value = attachment.type;
+                document.getElementById('attachmentDate').value = attachment.date;
+                document.getElementById('attachmentDescription').value = attachment.description || '';
+                document.getElementById('attachmentId').value = attachment.id;
+                attachmentDataInput.value = attachment.data;
+                
+                // Show preview
+                const fileTypeIcon = getFileTypeIcon(attachment.data);
+                attachmentPreviewDiv.innerHTML = `
+                    <div>
+                        <i class="${fileTypeIcon}"></i>
+                        <strong>${attachment.name}</strong>
+                    </div>
+                    <div style="margin-top: 5px;">Tipe: ${attachment.type}</div>
+                `;
+            }
+            
+            attachmentModal.classList.add('active');
+        }
+
+        // Buka modal preview foto
+        function openPhotoPreview(id) {
+            const photo = photos.find(p => p.id === id);
+            if (photo) {
+                const person = people.find(p => p.id === photo.personId);
+                document.getElementById('previewPhotoImg').src = photo.data;
+                document.getElementById('previewPhotoInfo').innerHTML = `
+                    <div><strong>${photo.title}</strong></div>
+                    <div>${person ? person.name : 'Orang tidak ditemukan'} • ${formatDate(photo.date)}</div>
+                    ${photo.description ? `<div style="margin-top: 5px;">${photo.description}</div>` : ''}
+                `;
+                photoPreviewModal.classList.add('active');
+            }
+        }
+
+        // Buka modal preview foto kencan
+        function openDatePhotoPreview(dateId, photoIndex) {
+            const date = dates.find(d => d.id === dateId);
+            if (date && date.photos && date.photos[photoIndex]) {
+                document.getElementById('previewPhotoImg').src = date.photos[photoIndex];
+                document.getElementById('previewPhotoInfo').innerHTML = `
+                    <div><strong>Foto Kencan</strong></div>
+                    <div>${formatDate(date.date)} • ${date.location}</div>
+                `;
+                photoPreviewModal.classList.add('active');
+            }
+        }
+
+        // Tutup modal person
+        function closePersonModal() {
+            personModal.classList.remove('active');
+            personForm.reset();
+            profilePicPreviewDiv.innerHTML = '';
+            personProfilePicDataInput.value = '';
+        }
+
+        // Tutup modal date
+        function closeDateModal() {
+            dateModal.classList.remove('active');
+            dateForm.reset();
+            datePhotosPreviewDiv.innerHTML = '';
+            datePhotosData = [];
+            datePhotosDataInput.value = '';
+        }
+
+        // Tutup modal photo
+        function closePhotoModal() {
+            photoModal.classList.remove('active');
+            photoForm.reset();
+            photoPreviewDiv.innerHTML = '';
+            photoDataInput.value = '';
+        }
+
+        // Tutup modal attachment
+        function closeAttachmentModal() {
+            attachmentModal.classList.remove('active');
+            attachmentForm.reset();
+            attachmentPreviewDiv.innerHTML = '';
+            attachmentDataInput.value = '';
+        }
+
+        // Tutup modal preview photo
+        function closePhotoPreviewModal() {
+            photoPreviewModal.classList.remove('active');
+        }
+
+        // Simpan orang (tambah atau edit)
+        function savePerson() {
+            if (!personForm.checkValidity()) {
+                personForm.reportValidity();
+                return;
+            }
+
+            const personData = {
+                id: editingPersonId || Date.now(),
+                name: document.getElementById('personName').value,
+                category: document.getElementById('personCategory').value,
+                birthday: document.getElementById('personBirthday').value || '',
+                likes: document.getElementById('personLikes').value || '',
+                dislikes: document.getElementById('personDislikes').value || '',
+                notes: document.getElementById('personNotes').value || '',
+                profilePic: personProfilePicDataInput.value || ''
+            };
+
+            if (editingPersonId) {
+                const index = people.findIndex(p => p.id === editingPersonId);
+                if (index !== -1) {
+                    people[index] = personData;
+                }
+            } else {
+                people.push(personData);
+            }
+
+            saveToLocalStorage();
+            renderDashboard();
+            renderPeople();
+            populatePersonSelects();
+            closePersonModal();
+            
+            showNotification(editingPersonId ? "Catatan orang berhasil diperbarui!" : "Orang baru berhasil ditambahkan!");
+        }
+
+        // Simpan kencan (tambah atau edit)
+        function saveDate() {
+            if (!dateForm.checkValidity()) {
+                dateForm.reportValidity();
+                return;
+            }
+
+            const dateData = {
+                id: editingDateId || Date.now(),
+                personId: parseInt(document.getElementById('datePersonId').value),
+                date: document.getElementById('dateDate').value,
+                location: document.getElementById('dateLocation').value,
+                activity: document.getElementById('dateActivity').value,
+                duration: parseFloat(document.getElementById('dateDuration').value) || 0,
+                cost: parseInt(document.getElementById('dateCost').value) || 0,
+                rating: document.getElementById('dateRating').value,
+                notes: document.getElementById('dateNotes').value || '',
+                photos: datePhotosData
+            };
+
+            if (editingDateId) {
+                const index = dates.findIndex(d => d.id === editingDateId);
+                if (index !== -1) {
+                    dates[index] = dateData;
+                }
+            } else {
+                dates.push(dateData);
+            }
+
+            saveToLocalStorage();
+            renderDashboard();
+            renderDates();
+            closeDateModal();
+            
+            showNotification(editingDateId ? "Catatan kencan berhasil diperbarui!" : "Catatan kencan berhasil ditambahkan!");
+        }
+
+        // Simpan foto (tambah atau edit)
+        function savePhoto() {
+            if (!photoForm.checkValidity()) {
+                photoForm.reportValidity();
+                return;
+            }
+
+            if (!photoDataInput.value) {
+                alert('Harap pilih foto terlebih dahulu');
+                return;
+            }
+
+            const photoData = {
+                id: editingPhotoId || Date.now(),
+                personId: parseInt(document.getElementById('photoPersonId').value),
+                title: document.getElementById('photoTitle').value,
+                date: document.getElementById('photoDate').value,
+                description: document.getElementById('photoDescription').value || '',
+                data: photoDataInput.value
+            };
+
+            if (editingPhotoId) {
+                const index = photos.findIndex(p => p.id === editingPhotoId);
+                if (index !== -1) {
+                    photos[index] = photoData;
+                }
+            } else {
+                photos.push(photoData);
+            }
+
+            saveToLocalStorage();
+            renderDashboard();
+            renderPhotos();
+            renderPeople();
+            closePhotoModal();
+            
+            showNotification(editingPhotoId ? "Foto berhasil diperbarui!" : "Foto berhasil ditambahkan!");
+        }
+
+        // Simpan lampiran (tambah atau edit)
+        function saveAttachment() {
+            if (!attachmentForm.checkValidity()) {
+                attachmentForm.reportValidity();
+                return;
+            }
+
+            if (!attachmentDataInput.value) {
+                alert('Harap pilih file terlebih dahulu');
+                return;
+            }
+
+            const attachmentData = {
+                id: editingAttachmentId || Date.now(),
+                personId: parseInt(document.getElementById('attachmentPersonId').value),
+                name: document.getElementById('attachmentName').value,
+                type: document.getElementById('attachmentType').value,
+                date: document.getElementById('attachmentDate').value,
+                description: document.getElementById('attachmentDescription').value || '',
+                data: attachmentDataInput.value,
+                fileName: attachmentFileInput.files[0] ? attachmentFileInput.files[0].name : 'file'
+            };
+
+            if (editingAttachmentId) {
+                const index = attachments.findIndex(a => a.id === editingAttachmentId);
+                if (index !== -1) {
+                    attachments[index] = attachmentData;
+                }
+            } else {
+                attachments.push(attachmentData);
+            }
+
+            saveToLocalStorage();
+            renderDashboard();
+            renderAttachments();
+            renderPeople();
+            closeAttachmentModal();
+            
+            showNotification(editingAttachmentId ? "Lampiran berhasil diperbarui!" : "Lampiran berhasil ditambahkan!");
+        }
+
+        // Hapus orang
+        function deletePerson(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus catatan orang ini? Semua catatan terkait (kencan, foto, lampiran) juga akan dihapus.")) {
+                // Hapus orang
+                people = people.filter(p => p.id !== id);
+                
+                // Hapus semua data terkait
+                dates = dates.filter(d => d.personId !== id);
+                photos = photos.filter(p => p.personId !== id);
+                attachments = attachments.filter(a => a.personId !== id);
+                
+                saveToLocalStorage();
+                renderDashboard();
+                renderPeople();
+                renderDates();
+                renderPhotos();
+                renderAttachments();
+                populatePersonSelects();
+                showNotification("Catatan orang dan semua data terkait berhasil dihapus!");
+            }
+        }
+
+        // Hapus kencan
+        function deleteDate(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus catatan kencan ini?")) {
+                dates = dates.filter(d => d.id !== id);
+                saveToLocalStorage();
+                renderDashboard();
+                renderDates();
+                showNotification("Catatan kencan berhasil dihapus!");
+            }
+        }
+
+        // Hapus foto
+        function deletePhoto(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus foto ini?")) {
+                photos = photos.filter(p => p.id !== id);
+                saveToLocalStorage();
+                renderDashboard();
+                renderPhotos();
+                renderPeople();
+                showNotification("Foto berhasil dihapus!");
+            }
+        }
+
+        // Hapus lampiran
+        function deleteAttachment(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus lampiran ini?")) {
+                attachments = attachments.filter(a => a.id !== id);
+                saveToLocalStorage();
+                renderDashboard();
+                renderAttachments();
+                renderPeople();
+                showNotification("Lampiran berhasil dihapus!");
+            }
+        }
+
+        // Download lampiran
+        function downloadAttachment(id) {
+            const attachment = attachments.find(a => a.id === id);
+            if (!attachment) return;
+            
+            const link = document.createElement('a');
+            link.href = attachment.data;
+            link.download = attachment.fileName || attachment.name;
+            link.click();
+            
+            showNotification("Lampiran sedang didownload!");
+        }
+
+        // Toggle show more photos for a date
+        function toggleDatePhotos(dateId) {
+            const date = dates.find(d => d.id === dateId);
+            if (!date || !date.photos || date.photos.length === 0) return;
+            
+            const showMoreBtn = document.getElementById(`showMoreBtn_${dateId}`);
+            const photosGrid = document.getElementById(`datePhotosGrid_${dateId}`);
+            
+            if (showMoreBtn.textContent.includes("Lebih Banyak")) {
+                // Show all photos
+                photosGrid.innerHTML = date.photos.map((photo, idx) => `
+                    <div class="date-photo-item" onclick="openDatePhotoPreview(${dateId}, ${idx})">
+                        <img src="${photo}" alt="Foto Kencan" class="date-photo-img">
+                    </div>
+                `).join('');
+                showMoreBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Lebih Sedikit';
+            } else {
+                // Show only first 4 photos
+                const limitedPhotos = date.photos.slice(0, 4);
+                photosGrid.innerHTML = limitedPhotos.map((photo, idx) => `
+                    <div class="date-photo-item" onclick="openDatePhotoPreview(${dateId}, ${idx})">
+                        <img src="${photo}" alt="Foto Kencan" class="date-photo-img">
+                    </div>
+                `).join('');
+                
+                // Add count item if there are more photos
+                if (date.photos.length > 4) {
+                    const countItem = document.createElement('div');
+                    countItem.className = 'date-photo-item';
+                    countItem.innerHTML = `<div class="date-photo-count">+${date.photos.length - 4}</div>`;
+                    countItem.onclick = () => toggleDatePhotos(dateId);
+                    photosGrid.appendChild(countItem);
+                }
+                
+                showMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Lebih Banyak';
+            }
+        }
+
+        // Render daftar orang
+        function renderPeople() {
+            let filteredPeople = people;
+            if (currentFilter !== 'all') {
+                filteredPeople = people.filter(p => p.category === currentFilter);
+            }
+
+            if (filteredPeople.length === 0) {
+                let emptyMessage = '';
+                if (currentFilter === 'all') {
+                    emptyMessage = `
+                        <div class="empty-state">
+                            <i class="fas fa-user-friends"></i>
+                            <h3>Belum ada catatan orang</h3>
+                            <p>Mulai dengan menambahkan orang baru menggunakan tombol "Tambah Orang Baru"</p>
+                        </div>
+                    `;
+                } else {
+                    const categoryNames = {
+                        'crush': 'Crush',
+                        'friend': 'Teman',
+                        'family': 'Keluarga',
+                        'other': 'Lainnya'
+                    };
+                    
+                    emptyMessage = `
+                        <div class="empty-state">
+                            <i class="fas fa-filter"></i>
+                            <h3>Tidak ada orang dengan kategori "${categoryNames[currentFilter]}"</h3>
+                            <p>Coba kategori lain atau tambahkan orang baru</p>
+                        </div>
+                    `;
+                }
+                
+                peopleContainer.innerHTML = emptyMessage;
+                return;
+            }
+
+            // Render kartu orang
+            peopleContainer.innerHTML = filteredPeople.map(person => {
+                const personPhotos = photos.filter(p => p.personId === person.id);
+                const personAttachments = attachments.filter(a => a.personId === person.id);
+                const personDates = dates.filter(d => d.personId === person.id);
+                
+                return `
+                    <div class="person-card">
+                        <div class="person-header">
+                            ${person.profilePic ? 
+                                `<img src="${person.profilePic}" alt="${person.name}" class="person-profile-pic">` :
+                                `<div class="person-profile-pic"><i class="fas fa-user"></i></div>`
+                            }
+                            <div class="person-info">
+                                <div class="person-name">${person.name}</div>
+                                ${person.birthday ? `<div style="color: #666; font-size: 0.9rem;"><i class="fas fa-birthday-cake"></i> ${formatDate(person.birthday)}</div>` : ''}
+                                
+                                <div class="person-media-count">
+                                    <div class="media-count-item">
+                                        <i class="fas fa-calendar-alt"></i> ${personDates.length} Kencan
+                                    </div>
+                                    <div class="media-count-item">
+                                        <i class="fas fa-camera"></i> ${personPhotos.length} Foto
+                                    </div>
+                                    <div class="media-count-item">
+                                        <i class="fas fa-paperclip"></i> ${personAttachments.length} Lampiran
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="person-category ${getCategoryClass(person.category)}">
+                                ${getCategoryName(person.category)}
+                            </div>
+                        </div>
+                        <div class="person-details">
+                            ${person.likes ? `
+                                <div class="detail-item">
+                                    <div class="detail-label"><i class="fas fa-heart"></i> Kesukaan</div>
+                                    <div class="detail-value">${formatList(person.likes)}</div>
+                                </div>
+                            ` : ''}
+                            
+                            ${person.dislikes ? `
+                                <div class="detail-item">
+                                    <div class="detail-label"><i class="fas fa-times-circle"></i> Tidak Suka</div>
+                                    <div class="detail-value">${formatList(person.dislikes)}</div>
+                                </div>
+                            ` : ''}
+                            
+                            ${person.notes ? `
+                                <div class="detail-item">
+                                    <div class="detail-label"><i class="fas fa-sticky-note"></i> Catatan</div>
+                                    <div class="detail-value">${person.notes}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="person-actions">
+                            <button class="action-btn action-btn-media" onclick="openAddMediaForPerson(${person.id})">
+                                <i class="fas fa-plus"></i> Media
+                            </button>
+                            <button class="action-btn action-btn-date" onclick="openAddDateForPerson(${person.id})">
+                                <i class="fas fa-calendar-plus"></i> Kencan
+                            </button>
+                            <button class="action-btn action-btn-edit" onclick="openEditPersonModal(${person.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn action-btn-delete" onclick="deletePerson(${person.id})">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render daftar kencan
+        function renderDates() {
+            if (dates.length === 0) {
+                datesContainer.innerHTML = `
+                    <div class="empty-state" style="padding: 30px 20px;">
+                        <i class="fas fa-calendar-times"></i>
+                        <h3>Belum ada catatan kencan</h3>
+                        <p>Mulai dengan menambahkan catatan kencan menggunakan tombol "Tambah Catatan Kencan"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Urutkan kencan berdasarkan tanggal terbaru
+            const sortedDates = [...dates].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Render kartu kencan
+            datesContainer.innerHTML = sortedDates.map(date => {
+                const person = people.find(p => p.id === date.personId);
+                const personName = person ? person.name : 'Orang tidak ditemukan';
+                const ratingClass = getRatingClass(date.rating);
+                const ratingText = getRatingText(date.rating);
+                
+                // Limit photos to show initially (first 4)
+                const photosToShow = date.photos ? date.photos.slice(0, 4) : [];
+                const hasMorePhotos = date.photos && date.photos.length > 4;
+                const isCollapsed = collapsedDates.has(date.id);
+                
+                return `
+                    <div class="date-card" data-id="${date.id}">
+                        <div class="date-header" onclick="toggleDateCard(${date.id})">
+                            <div class="date-person">
+                                ${person && person.profilePic ? 
+                                    `<img src="${person.profilePic}" alt="${personName}" class="date-person-pic">` :
+                                    `<div style="width: 35px; height: 35px; border-radius: 50%; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;"><i class="fas fa-user"></i></div>`
+                                }
+                                <span>${personName}</span>
+                            </div>
+                            <div class="date-actions">
+                                <button class="date-btn date-btn-toggle">
+                                    <i class="fas fa-chevron-${isCollapsed ? 'down' : 'up'}"></i>
+                                </button>
+                                <button class="date-btn date-btn-edit" onclick="event.stopPropagation(); openEditDateModal(${date.id})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="date-btn date-btn-delete" onclick="event.stopPropagation(); deleteDate(${date.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="date-content ${isCollapsed ? 'collapsed' : ''}">
+                            <div class="date-details">
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Tanggal</div>
+                                    <div>${formatDate(date.date)}</div>
+                                </div>
+                                
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Lokasi</div>
+                                    <div>${date.location}</div>
+                                </div>
+                                
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Aktivitas</div>
+                                    <div>${date.activity}</div>
+                                </div>
+                                
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Durasi</div>
+                                    <div>${date.duration} jam</div>
+                                </div>
+                                
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Biaya</div>
+                                    <div>Rp ${date.cost.toLocaleString('id-ID')}</div>
+                                </div>
+                                
+                                <div class="date-detail-item">
+                                    <div class="date-detail-label">Rating</div>
+                                    <div class="date-rating ${ratingClass}">${ratingText}</div>
+                                </div>
+                            </div>
+                            
+                            ${date.notes ? `
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                                    <div class="date-detail-label">Catatan</div>
+                                    <div>${date.notes}</div>
+                                </div>
+                            ` : ''}
+                            
+                            ${date.photos && date.photos.length > 0 ? `
+                                <div class="date-photos-section">
+                                    <div class="date-photos-title">
+                                        <span>Foto Kencan (${date.photos.length})</span>
+                                    </div>
+                                    <div id="datePhotosGrid_${date.id}" class="date-photos-grid">
+                                        ${photosToShow.map((photo, idx) => `
+                                            <div class="date-photo-item" onclick="openDatePhotoPreview(${date.id}, ${idx})">
+                                                <img src="${photo}" alt="Foto Kencan" class="date-photo-img">
+                                            </div>
+                                        `).join('')}
+                                        ${hasMorePhotos ? `
+                                            <div class="date-photo-item" onclick="toggleDatePhotos(${date.id})">
+                                                <div class="date-photo-count">+${date.photos.length - 4}</div>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                    ${hasMorePhotos ? `
+                                        <div class="show-more-photos">
+                                            <button id="showMoreBtn_${date.id}" class="show-more-btn" onclick="toggleDatePhotos(${date.id})">
+                                                <i class="fas fa-chevron-down"></i> Lebih Banyak
+                                            </button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render daftar foto
+        function renderPhotos() {
+            if (photos.length === 0) {
+                photosContainer.innerHTML = `
+                    <div class="empty-media">
+                        <i class="fas fa-images"></i>
+                        <h3>Belum ada foto</h3>
+                        <p>Tambahkan foto menggunakan tombol "Tambah Foto"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Urutkan foto berdasarkan tanggal terbaru
+            const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Render grid foto
+            photosContainer.innerHTML = sortedPhotos.map(photo => {
+                const person = people.find(p => p.id === photo.personId);
+                const personName = person ? person.name : 'Orang tidak ditemukan';
+                
+                return `
+                    <div class="photo-item">
+                        <img src="${photo.data}" alt="${photo.title}" class="photo-img" onclick="openPhotoPreview(${photo.id})">
+                        <div class="photo-overlay">
+                            <div class="photo-title">${photo.title}</div>
+                            <div class="photo-date">${personName} • ${formatDate(photo.date)}</div>
+                        </div>
+                        <div class="photo-actions">
+                            <button class="photo-action-btn" onclick="openEditPhotoModal(${photo.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="photo-action-btn" onclick="deletePhoto(${photo.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render daftar lampiran
+        function renderAttachments() {
+            if (attachments.length === 0) {
+                attachmentsContainer.innerHTML = `
+                    <div class="empty-media">
+                        <i class="fas fa-paperclip"></i>
+                        <h3>Belum ada lampiran</h3>
+                        <p>Tambahkan lampiran menggunakan tombol "Tambah Lampiran"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Urutkan lampiran berdasarkan tanggal terbaru
+            const sortedAttachments = [...attachments].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Render list lampiran
+            attachmentsContainer.innerHTML = sortedAttachments.map(attachment => {
+                const person = people.find(p => p.id === attachment.personId);
+                const personName = person ? person.name : 'Orang tidak ditemukan';
+                const fileTypeIcon = getFileTypeIcon(attachment.data);
+                const typeText = getAttachmentTypeText(attachment.type);
+                
+                return `
+                    <div class="attachment-item">
+                        <div class="attachment-icon">
+                            <i class="${fileTypeIcon}"></i>
+                        </div>
+                        <div class="attachment-details">
+                            <div class="attachment-name">${attachment.name}</div>
+                            <div class="attachment-meta">
+                                <span>${personName}</span>
+                                <span>${typeText}</span>
+                                <span>${formatDate(attachment.date)}</span>
+                            </div>
+                            ${attachment.description ? `<div style="margin-top: 8px; font-size: 0.9rem;">${attachment.description}</div>` : ''}
+                        </div>
+                        <div class="attachment-actions">
+                            <button class="attachment-btn attachment-btn-download" onclick="downloadAttachment(${attachment.id})">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="attachment-btn attachment-btn-delete" onclick="deleteAttachment(${attachment.id})">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Buka modal untuk menambah media untuk orang tertentu
+        function openAddMediaForPerson(personId) {
+            // Tampilkan dialog untuk memilih jenis media
+            if (confirm("Tambahkan foto atau lampiran?")) {
+                openAddPhotoModal();
+                document.getElementById('photoPersonId').value = personId;
+            } else {
+                openAddAttachmentModal();
+                document.getElementById('attachmentPersonId').value = personId;
+            }
+        }
+
+        // Buka modal kencan untuk orang tertentu
+        function openAddDateForPerson(personId) {
+            if (people.length === 0) {
+                alert("Tambahkan orang terlebih dahulu sebelum mencatat kencan.");
+                return;
+            }
+            
+            editingDateId = null;
+            dateModalTitle.textContent = "Tambah Catatan Kencan";
+            dateForm.reset();
+            datePhotosPreviewDiv.innerHTML = '';
+            datePhotosData = [];
+            datePhotosDataInput.value = '';
+            
+            // Set orang yang dipilih
+            document.getElementById('datePersonId').value = personId;
+            
+            // Reset rating ke medium
+            ratingOptions.forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.rating-option[data-rating="medium"]').classList.add('selected');
+            dateRatingInput.value = "medium";
+            
+            // Set tanggal hari ini
+            document.getElementById('dateDate').valueAsDate = new Date();
+            
+            dateModal.classList.add('active');
+        }
+
+        // Import data dari file JSON
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    // Validasi data
+                    if (!importedData.people) {
+                        throw new Error("Format data tidak valid");
+                    }
+                    
+                    if (confirm("Apakah Anda yakin ingin mengimpor data? Data saat ini akan digantikan.")) {
+                        people = importedData.people || [];
+                        dates = importedData.dates || [];
+                        photos = importedData.photos || [];
+                        attachments = importedData.attachments || [];
+                        saveToLocalStorage();
+                        renderDashboard();
+                        renderPeople();
+                        renderDates();
+                        renderPhotos();
+                        renderAttachments();
+                        populatePersonSelects();
+                        showNotification("Data berhasil diimpor!");
+                    }
+                } catch (error) {
+                    alert("Gagal mengimpor data. Pastikan file JSON memiliki format yang benar.");
+                    console.error("Import error:", error);
+                }
+                
+                // Reset input file
+                event.target.value = '';
+            };
+            
+            reader.readAsText(file);
+        }
+
+        // Export data ke JSON
+        function exportData() {
+            const data = {
+                people: people,
+                dates: dates,
+                photos: photos,
+                attachments: attachments,
+                exportedAt: new Date().toISOString(),
+                version: "4.0"
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `catatan-orang-terkasih-${new Date().toISOString().slice(0,10)}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showNotification("Data berhasil diexport!");
+        }
+
+        // Download backup data
+        function downloadBackup() {
+            const data = {
+                people: people,
+                dates: dates,
+                photos: photos,
+                attachments: attachments,
+                exportedAt: new Date().toISOString(),
+                version: "4.0",
+                backup: true
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], {type: "application/json"});
+            const url = URL.createObjectURL(blob);
+            
+            const linkElement = document.createElement('a');
+            linkElement.href = url;
+            linkElement.download = `backup-catatan-${new Date().toISOString().slice(0,10)}.json`;
+            linkElement.click();
+            
+            URL.revokeObjectURL(url);
+            showNotification("Backup data berhasil didownload!");
+        }
+
+        // Hapus semua media
+        function clearAllMedia() {
+            if (confirm("Apakah Anda yakin ingin menghapus semua foto dan lampiran? Tindakan ini tidak dapat dibatalkan.")) {
+                photos = [];
+                attachments = [];
+                saveToLocalStorage();
+                renderDashboard();
+                renderPhotos();
+                renderAttachments();
+                renderPeople();
+                showNotification("Semua media berhasil dihapus!");
+            }
+        }
+
+        // Helper functions
+        function getCategoryClass(category) {
+            switch(category) {
+                case 'crush': return 'category-crush';
+                case 'friend': return 'category-friend';
+                case 'family': return 'category-family';
+                case 'other': return 'category-other';
+                default: return '';
+            }
+        }
+
+        function getCategoryName(category) {
+            switch(category) {
+                case 'crush': return 'Crush';
+                case 'friend': return 'Teman';
+                case 'family': return 'Keluarga';
+                case 'other': return 'Lainnya';
+                default: return '';
+            }
+        }
+
+        function getRatingClass(rating) {
+            switch(rating) {
+                case 'high': return 'rating-high';
+                case 'medium': return 'rating-medium';
+                case 'low': return 'rating-low';
+                default: return '';
+            }
+        }
+
+        function getRatingText(rating) {
+            switch(rating) {
+                case 'high': return 'Tinggi';
+                case 'medium': return 'Sedang';
+                case 'low': return 'Rendah';
+                default: return '';
+            }
+        }
+
+        function getFileTypeIcon(dataUrl) {
+            if (dataUrl.startsWith('data:image')) {
+                return 'fas fa-image';
+            } else if (dataUrl.startsWith('data:audio')) {
+                return 'fas fa-volume-up';
+            } else if (dataUrl.startsWith('data:application/pdf')) {
+                return 'fas fa-file-pdf';
+            } else if (dataUrl.startsWith('data:text')) {
+                return 'fas fa-file-alt';
+            } else {
+                return 'fas fa-file';
+            }
+        }
+
+        function getAttachmentTypeText(type) {
+            switch(type) {
+                case 'screenshot': return 'Screenshot Chat';
+                case 'voice': return 'Voice Note';
+                case 'card': return 'Kartu Ucapan';
+                case 'document': return 'Dokumen';
+                case 'other': return 'Lainnya';
+                default: return type;
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        function formatList(text) {
+            if (!text) return '';
+            return text.split(',').map(item => `<span style="display: inline-block; background: #f0f0f0; padding: 4px 10px; border-radius: 15px; margin: 3px;">${item.trim()}</span>`).join('');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showNotification(message) {
+            // Buat elemen notifikasi
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--success);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: var(--shadow);
+                z-index: 1001;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+            `;
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Tambahkan style untuk animasi
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Expose functions ke global scope untuk event handlers di HTML
+        window.openEditPersonModal = openEditPersonModal;
+        window.deletePerson = deletePerson;
+        window.openEditDateModal = openEditDateModal;
+        window.deleteDate = deleteDate;
+        window.openEditPhotoModal = openEditPhotoModal;
+        window.deletePhoto = deletePhoto;
+        window.openEditAttachmentModal = openEditAttachmentModal;
+        window.deleteAttachment = deleteAttachment;
+        window.downloadAttachment = downloadAttachment;
+        window.openAddDateForPerson = openAddDateForPerson;
+        window.openAddMediaForPerson = openAddMediaForPerson;
+        window.openPhotoPreview = openPhotoPreview;
+        window.openDatePhotoPreview = openDatePhotoPreview;
+        window.toggleDatePhotos = toggleDatePhotos;
+        window.removeDatePhoto = removeDatePhoto;
+        window.toggleDateCard = toggleDateCard;
+    </script>
+</body>
+</html>
